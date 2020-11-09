@@ -1,13 +1,13 @@
 //
-//  ViewController.swift
-//  3rdAssignment
+//  ListViewController.swift
+//  week4assignment
 //
-//  Created by 오준현 on 2020/11/05.
+//  Created by 오준현 on 2020/11/08.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class ListViewController: UIViewController {
 
     let naviView: UIView = {
        let view = UIView()
@@ -67,6 +67,8 @@ class ViewController: UIViewController {
     }
     
     func setUpLayout() {
+        view.backgroundColor = .white
+        
         view.addSubview(collectionView)
         
         collectionView.delegate = self
@@ -79,8 +81,8 @@ class ViewController: UIViewController {
 
         collectionView.collectionViewLayout = layout
         
-        collectionView.register(MainCVC.self,
-                                forCellWithReuseIdentifier: MainCVC.identifier)
+        collectionView.register(ListCollectionViewCell.self,
+                                forCellWithReuseIdentifier: ListCollectionViewCell.identifier)
         collectionView.register(HeaderReuseView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: HeaderReuseView.identifier)
@@ -119,9 +121,9 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: UICollectionViewDelegate { }
+extension ListViewController: UICollectionViewDelegate { }
 
-extension ViewController: UICollectionViewDataSource {
+extension ListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         return 10
@@ -129,8 +131,8 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCVC.identifier,
-                                                            for: indexPath) as? MainCVC else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ListCollectionViewCell.identifier,
+                                                            for: indexPath) as? ListCollectionViewCell else {
             return UICollectionViewCell()
         }
         
@@ -206,7 +208,7 @@ extension ViewController: UICollectionViewDataSource {
     
 }
 
-extension ViewController: UICollectionViewDelegateFlowLayout {
+extension ListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
